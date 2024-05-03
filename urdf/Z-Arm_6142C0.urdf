@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Z-Arm 6142C0">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.501633224208481 0.00596824856586447 0.118076672854183"
+        rpy="0 0 0" />
+      <mass
+        value="4.31870432739951" />
+      <inertia
+        ixx="0.0190263636116466"
+        ixy="-0.00105969560369217"
+        ixz="-0.000113993243143701"
+        iyy="0.212504819894391"
+        iyz="-4.48977417022246E-05"
+        izz="0.212078411927734" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://meshes/base_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://meshes/base_link.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="-0.0184425210840078 0.268765568135442 0.27491460525596"
+        rpy="0 0 0" />
+      <mass
+        value="2.16979343156165" />
+      <inertia
+        ixx="0.0174301367766123"
+        ixy="-3.98628198887465E-05"
+        ixz="-4.01934442286823E-07"
+        iyy="0.00262522645743786"
+        iyz="-9.45653094923331E-05"
+        izz="0.0186444337723011" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://meshes/link1.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://meshes/link1.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="fixed">
+    <origin
+      xyz="-0.54803 -0.15238 0.0034966"
+      rpy="-1.5708 1.3164 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="0.144014232816696 0.522536087277045 0.55038354060466"
+        rpy="0 0 0" />
+      <mass
+        value="1.41825655448629" />
+      <inertia
+        ixx="0.00530999024298429"
+        ixy="-0.00384758408726205"
+        ixz="-1.53620390717967E-05"
+        iyy="0.00503496149072003"
+        iyz="-1.59207347579054E-05"
+        izz="0.009903841172608" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://meshes/link2.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://meshes/link2.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="fixed">
+    <origin
+      xyz="0.39959 0.19186 -0.21369"
+      rpy="0 0 1.317" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
