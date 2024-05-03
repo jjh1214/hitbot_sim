@@ -49,13 +49,13 @@ Set the IP address of the PC as follows
 
 - Default gateway : 192.168.0.1
 
-Run the following code to verify the connection
+### Run the following code to verify the connection
 
 ```
 $ ros2 run hitbot_sim hitbot_controller_joint_state
 ```
 
-Robot connetion is sucess and if you want move robot following code other terminal
+### Robot connetion is sucess and if you want move robot following code other terminal
 ```
 $ ros2 launch hitbot_sim hitbot_rviz2.launch.py
 ```
