@@ -15,9 +15,12 @@ This repository is able Rviz2 and real robot is connected and used.
 
 $ mkdir -p ~/hitbot_ws/src
 $ cd ~/hitbot_ws/src
+$ git clone https://github.com/jjh1214/hitbot.git
 $ git clone https://github.com/jjh1214/hitbot_sim.git
 $ git clone https://github.com/jjh1214/hitbot_msgs.git
+
 $ sudo apt-get install ros-foxy-joint-state-publisher-gui
+
 $ cd ~/hitbot_ws
 $ colcon build
 $ . install/setup.bash
@@ -30,7 +33,7 @@ $ ros2 launch hitbot_sim hitbot_rviz2.launch.py
 ```
 ![alt text](<Screenshot from 2024-05-03 09-31-35.png>)
 
-Click Randomize and check changes the links.
+Click Randomize and check changes the links in Rviz2.
 
 Click Center to return to the initial position.
 
@@ -49,10 +52,14 @@ Set the IP address of the PC as follows
 Run the following code to verify the connection
 
 ```
-$ ros2 launch hitbot_sim hitbot_rviz2.launch.py
+$ ros2 run hitbot_sim hitbot_controller_joint_state
 ```
 
 Robot connetion is sucess and if you want move robot following code other terminal
 ```
-$ ros2 run hitbot hitbot_control_pub
+$ ros2 launch hitbot_sim hitbot_rviz2.launch.py
 ```
+
+Click Randomize and check changes the links in Real and Simulation.
+
+Click Center to return to the initial position.

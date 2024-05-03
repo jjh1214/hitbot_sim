@@ -31,6 +31,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+
+            'hitbot_controller_joint_state       = hitbot_sim.hitbot_controller_joint_state:main',
+
         ],
     },
 )
