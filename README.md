@@ -63,3 +63,11 @@ $ ros2 launch hitbot_sim hitbot_rviz2.launch.py
 Click Randomize and check changes the links in Real and Simulation.
 
 Click Center to return to the initial position.
+
+# TODO
+```
+$ ros2 launch hitbot_sim hitbot_gazebo.launch.py
+```
+Tried gazebo simulation but failed.
+
+I will try gazebo simulation again in Humble.
