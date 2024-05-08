@@ -18,6 +18,11 @@ class HitbotController(Node):
         self.SetGPIO_srv = self.create_service(SetGPIO, 'set_gpio', self.set_gpio_callback)
         self.GetGPIOOut_srv = self.create_service(GetGPIOOut, 'get_gpio_out', self.get_gpio_out_callback)
         self.GetGPIOIn_srv = self.create_service(GetGPIOIn, 'get_gpio_in', self.get_gpio_in_callback)
+        self.SetDragTeach_srv = self.create_service(SetDragTeach, 'set_drag_teach', self.set_drag_teach_callback)
+        self.JointHome_srv = self.create_service(JointHome, 'joint_home', self.joint_home_callback)
+        self.NewMovejXYZ_srv = self.create_service(NewMovejXYZ, 'new_movej_xyz_lr', self.new_movej_xyz_lr_callback)
+        self.NewMovejAngle_srv = self.create_service(NewMovejAngle, 'new_movej_angle', self.new_movej_angle_callback)
+
 
         self.hitbot_x = 0
         self.hitbot_y = 0
@@ -187,6 +192,110 @@ class HitbotController(Node):
                     self.get_logger().error('Max retries exceeded. Failed to get GPIO.')
                     break
 
+        return response
+
+    def set_drag_teach_callback(self, request, response):
+        max_retries = 3
+        retries = 0
+        
+        while retries < max_retries:
+            try:
+                self.robot.set_drag_teach(request.enable)
+                response.success = True
+                if self.robot.set_drag_teach(request.enable) == True:
+                    self.get_logger().info('Successfully set drag teach')
+                elif self.robot.set_drag_teach(request.enable) == False:
+                    self.get_logger().info('Failed to set drag teach, please check your robot model enable drag teach')
+                else:
+                    pass
+                break
+            except Exception as e:
+                self.get_logger().error('Failed to set drag teach: %s' % str(e))
+                response.success = False
+                retries += 1
+                if retries < max_retries:
+                    self.get_logger().info('Retrying set drag teach (attempt %d)...' % retries)
+                else:
+                    self.get_logger().error('Max retries exceeded. Failed to set drag teach.')
+                    break
+
+        return response
+
+    def joint_home_callback(self, request, response):
+        max_retries = 3
+        retries = 0
+        
+        while retries < max_retries:
+            try:
+                self.robot.joint_home(request.joint_num)
+                response.success = True
+                if self.robot.joint_home(request.joint_num) == 0:
+                    self.get_logger().info('Joint Not connected. Check your robot')
+                elif self.robot.joint_home(request.joint_num) == 1:
+                    self.get_logger().info('Success')
+                elif self.robot.joint_home(request.joint_num) == 2:
+                    self.get_logger().info('Invalid parameters passed')
+                elif self.robot.joint_home(request.joint_num) == 3:
+                    self.get_logger().info('The robot is still initializing.')
+                else:
+                    pass
+                break
+            except Exception as e:
+                self.get_logger().error('Failed to joint home: %s' % str(e))
+                response.success = False
+                retries += 1
+                if retries < max_retries:
+                    self.get_logger().info('Retrying joint home (attempt %d)...' % retries)
+                else:
+                    self.get_logger().error('Max retries exceeded. Failed to joint home.')
+                    break
+        return response
+
+    def new_movej_xyz_lr_callback(self, request, response):
+        max_retries = 3
+        retries = 0
+        
+        while retries < max_retries:
+            try:
+                self.robot.new_movej_xyz_lr(request.goal_x, request.goal_y, request.goal_z, request.goal_r, request.speed, request.roughly, request.lr)
+                response.success = True
+                if self.robot.new_movej_xyz_lr(request.goal_x, request.goal_y, request.goal_z, request.goal_r, request.speed, request.roughly, request.lr) == 1:
+                    self.get_logger().info('Robot Moving')
+                else:
+                    self.get_logger().info('Error, Check Robot')
+                break
+            except Exception as e:
+                self.get_logger().error('Failed to new_movej_xyz_lr: %s' % str(e))
+                response.success = False
+                retries += 1
+                if retries < max_retries:
+                    self.get_logger().info('Retrying new_movej_xyz_lr (attempt %d)...' % retries)
+                else:
+                    self.get_logger().error('Max retries exceeded. Failed to new_movej_xyz_lr.')
+        return response
+
+
+    def new_movej_angle_callback(self, request, response):
+        max_retries = 3
+        retries = 0
+        
+        while retries < max_retries:
+            try:
+                self.robot.new_movej_angle(request.goal_angle1, request.goal_angle2, request.goal_z, request.goal_r, request.speed, request.roughly)
+                response.success = True
+                if self.robot.new_movej_angle(request.goal_angle1, request.goal_angle2, request.goal_z, request.goal_r, request.speed, request.roughly) == 1:
+                    self.get_logger().info('Robot Moving')
+                else:
+                    self.get_logger().info('Error, Check Robot')
+                break
+            except Exception as e:
+                self.get_logger().error('Failed to new_movej_angle: %s' % str(e))
+                response.success = False
+                retries += 1
+                if retries < max_retries:
+                    self.get_logger().info('Retrying new_movej_angle (attempt %d)...' % retries)
+                else:
+                    self.get_logger().error('Max retries exceeded. Failed to new_movej_angle.')
         return response
 
     def init_robot(self):
