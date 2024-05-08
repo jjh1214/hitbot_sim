@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot name="hitbot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- xacro argument -->
+  <xacro:arg name="use_nominal_extrinsics" default="true"/>
+
+  <!-- xacro include -->
+  <xacro:include filename="$(find hitbot_sim)/urdf/Z-Arm_10042C0.urdf.xacro" />
+
+  <!-- Mani Base -->
+  <xacro:Z-Arm_10042C0/>
+
+</robot>

@@ -18,9 +18,10 @@ setup(
         (os.path.join('share', package_name, 'meshes', 'Z-Arm_10042C0'), glob('meshes/Z-Arm_10042C0/*.dae')),
         (os.path.join('share', package_name, 'models', 'Z-Arm_10042C0'), glob('models/Z-Arm_10042C0/*.dae')),
         (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),
-        (os.path.join('share', package_name, 'world'), glob('world/*.model')),
-        (os.path.join('share', package_name, 'world'), glob('world/*.world')),
-
+        (os.path.join('share', package_name, 'worlds'), glob('worlds/*.model')),
+        (os.path.join('share', package_name, 'worlds'), glob('worlds/*.world')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.xacro')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

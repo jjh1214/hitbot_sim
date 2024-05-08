@@ -2,8 +2,14 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot
-  name="Z-Arm_10042C0">
+<robot name="Z-Arm_10042C0">
+  <link name="world"/>
+  <joint name="base_joint" type="fixed">
+  	<origin xyz="0 0 0" rpy="-1.5708 0 0" />
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  
   <link
     name="base_link">
     <inertial>
@@ -44,6 +50,7 @@
       </geometry>
     </collision>
   </link>
+
   <link
     name="link1">
     <inertial>
@@ -84,6 +91,7 @@
       </geometry>
     </collision>
   </link>
+
   <joint
     name="joint1"
     type="prismatic">
@@ -105,6 +113,7 @@
       effort="1"
       velocity="1" />
   </joint>
+  
   <link
     name="link2">
     <inertial>
@@ -145,6 +154,7 @@
       </geometry>
     </collision>
   </link>
+
   <joint
     name="joint2"
     type="revolute">
@@ -159,6 +169,7 @@
       xyz="0 0 1" />
     <limit effort="30" lower="-1.571" upper="1.571" velocity="1.571"/>
   </joint>
+
   <link
     name="link3">
     <inertial>
@@ -199,6 +210,7 @@
       </geometry>
     </collision>
   </link>
+
   <joint
     name="joint3"
     type="continuous">
@@ -212,6 +224,7 @@
     <axis
       xyz="0 0 1" />
   </joint>
+
   <link
     name="link4">
     <inertial>
@@ -252,6 +265,7 @@
       </geometry>
     </collision>
   </link>
+
   <joint
     name="joint4"
     type="continuous">
@@ -265,4 +279,5 @@
     <axis
       xyz="0 0 1" />
   </joint>
+
 </robot>
