@@ -13,9 +13,9 @@ def generate_launch_description():
         [FindPackageShare("hitbot_sim"), "worlds", "empty_world.world"]
     )
 
-    description_launch_path = PathJoinSubstitution(
-        [FindPackageShare('hitbot_sim'), 'launch', 'hitbot_rviz2.launch.py']
-    )
+    # description_launch_path = PathJoinSubstitution(
+    #     [FindPackageShare('hitbot_sim'), 'launch', 'hitbot_rviz2.launch.py']
+    # )
 
     return LaunchDescription([
         ExecuteProcess(
@@ -32,22 +32,22 @@ def generate_launch_description():
                         "-x", "0.0", "-y", "0.0", "-z", "0.0"]
         ),
 
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(description_launch_path),
-            launch_arguments={
-                'use_sim_time': str(use_sim_time),
-                'publish_joints': 'true',
-            }.items()
-        ),
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(description_launch_path),
+        #     launch_arguments={
+        #         'use_sim_time': str(use_sim_time),
+        #         'publish_joints': 'true',
+        #     }.items()
+        # ),
 
     # # load_joint_state_broadcaster
 	#     ExecuteProcess(
-    #         cmd=['ros2', 'control', 'load_controller', '--set-state', 'start','joint_state_broadcaster'],
+    #         cmd=['ros2', 'control', 'load_controller','joint_state_broadcaster'],
     #         output='screen'),
 
 	# # load_joint_trajectory_controller
 	#     ExecuteProcess( 
-    #         cmd=['ros2', 'control', 'load_controller', '--set-state', 'start', 'joint_trajectory_controller'], 
+    #         cmd=['ros2', 'control', 'load_controller', 'joint_trajectory_controller'], 
     #         output='screen'),
 
     ])

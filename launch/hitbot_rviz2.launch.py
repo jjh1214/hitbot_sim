@@ -61,7 +61,7 @@ def generate_launch_description():
                     'use_sim_time': LaunchConfiguration('use_sim_time'),
                     'robot_description': Command(['xacro ', LaunchConfiguration('urdf')])
                 }
-            ]
+            ],
         ),
 
         # joint_state_publisher_gui
