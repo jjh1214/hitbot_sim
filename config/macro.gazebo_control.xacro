@@ -7,13 +7,13 @@
 
 		<ros2_control name="GazeboSystem" type="system">
 			<hardware>
-				<plugin>gazebo_ros2_control/DefaultRobotHWSim</plugin>
+				<plugin>gazebo_ros2_control/GazeboSystem</plugin>
 	    	</hardware>
 
 	    	<joint name="joint1">
 	    		<command_interface name="position">
-	    			<param name="min">-6.2832</param>
-	    			<param name="max">6.2832</param>
+	    			<param name="min">-0.95</param>
+	    			<param name="max">0.0</param>
 	    		</command_interface>
 	    		<state_interface name="position"/>
 	    		<state_interface name="velocity"/>
@@ -22,8 +22,8 @@
 
 	    	<joint name="joint2">
 	    		<command_interface name="position">
-	    			<param name="min">-6.2832</param>
-	    			<param name="max">6.2832</param>
+	    			<param name="min">-1.571</param>
+	    			<param name="max">1.571</param>
 	    		</command_interface>
 	    		<state_interface name="position"/>
 	    		<state_interface name="velocity"/>
@@ -32,8 +32,8 @@
 
 	    	<joint name="joint3">
 	    		<command_interface name="position">
-	    			<param name="min">-2.7925</param>
-	    			<param name="max">2.7925</param>
+	    			<param name="min">-6.284</param>
+	    			<param name="max">6.284</param>
 	    		</command_interface>
 	    		<state_interface name="position"/>
 	    		<state_interface name="velocity"/>
@@ -42,18 +42,20 @@
 
 	    	<joint name="joint4">
 	    		<command_interface name="position">
-	    			<param name="min">-6.2832</param>
-	    			<param name="max">6.2832</param>
+	    			<param name="min">-6.284</param>
+	    			<param name="max">6.284</param>
 	    		</command_interface>
 	    		<state_interface name="position"/>
 	    		<state_interface name="velocity"/>
 	    		<state_interface name="effort"/>
 	    	</joint>
+    
+		</ros2_control>
 
 		<gazebo>
 			<plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
-				<robot_sim_type>gazebo_ros2_control/DefaultRobotHWSim</robot_sim_type>
 				<parameters>$(find hitbot_sim)/config/hitbot_control.yaml</parameters>
+				<robot_sim_type>gazebo_ros2_control/DefaultRobotHWSim</robot_sim_type>
 		    </plugin>
 		</gazebo>
 
