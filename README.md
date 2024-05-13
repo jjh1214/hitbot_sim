@@ -15,9 +15,9 @@ This repository is able Rviz2 and real robot is connected and used.
 
 $ mkdir -p ~/hitbot_ws/src
 $ cd ~/hitbot_ws/src
-$ git clone https://github.com/jjh1214/hitbot.git
-$ git clone https://github.com/jjh1214/hitbot_sim.git
-$ git clone https://github.com/jjh1214/hitbot_msgs.git
+$ git clone -b foxy https://github.com/jjh1214/hitbot.git
+$ git clone -b foxy https://github.com/jjh1214/hitbot_sim.git
+$ git clone -b foxy https://github.com/jjh1214/hitbot_msgs.git
 
 $ sudo apt-get install ros-foxy-joint-state-publisher-gui
 
