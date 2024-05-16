@@ -1,5 +1,6 @@
 from launch_ros.actions import Node
 from launch import LaunchDescription
+from launch.conditions import IfCondition
 from launch_ros.substitutions import FindPackageShare
 from launch.actions import ExecuteProcess, DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution
@@ -13,6 +14,10 @@ def generate_launch_description():
 
     world_path = PathJoinSubstitution(
         [FindPackageShare("hitbot_sim"), "worlds", "empty_world.world"]
+    )
+
+    rviz_config_path = PathJoinSubstitution(
+        [FindPackageShare('hitbot_sim'), 'rviz', 'default.rviz']
     )
 
     return LaunchDescription([
@@ -29,19 +34,33 @@ def generate_launch_description():
             description='Use simulation time'
         ),
 
-        ExecuteProcess(
-            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', world_path],
-            output='screen'
+        DeclareLaunchArgument(
+            name='rviz',
+            default_value='true',
+            description='Run rviz'
+        ),
+
+        DeclareLaunchArgument(
+            name='publish_joints',
+            default_value='true',
+            description='Launch joint_states_publisher'
         ),
 
         Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
-            name='urdf_spawner',
-            output='screen',
-            arguments=["-topic", "robot_description", "-entity", "Z-Arm_10042C0",
-                        "-x", "0.0", "-y", "0.0", "-z", "0.0"]
+            package='joint_state_publisher',
+            executable='joint_state_publisher',
+            name='joint_state_publisher',
+            condition=IfCondition(LaunchConfiguration("publish_joints")),
+            parameters=[
+                {'use_sim_time': LaunchConfiguration('use_sim_time')}
+            ],
         ),
+
+        Node(
+            package="joint_state_publisher_gui",
+            executable="joint_state_publisher_gui",
+            output="screen"
+            ),
 
         Node(
             package='robot_state_publisher',
@@ -55,6 +74,30 @@ def generate_launch_description():
                 }
             ],
             remappings=[('tf', 'gazebo_tf'), ('joint_states', 'gazebo_joint_states')]
+        ),
+
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            output='screen',
+            arguments=['-d', rviz_config_path],
+            condition=IfCondition(LaunchConfiguration("rviz")),
+            parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}]
+        ),
+
+        Node(
+            package='gazebo_ros',
+            executable='spawn_entity.py',
+            name='urdf_spawner',
+            output='screen',
+            arguments=["-topic", "robot_description", "-entity", "Z-Arm_10042C0",
+                        "-x", "0.0", "-y", "0.0", "-z", "0.0"]
+        ),
+
+        ExecuteProcess(
+            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', world_path],
+            output='screen'
         ),
 
     # load_joint_state_broadcaster

@@ -3,39 +3,26 @@ controller_manager:
     use_sim_time : True
     update_rate: 1000 # Hz
 
-
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-
-    joint_trajectory_controller:
+    z_arm_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
-
-joint_trajectory_controller:
+z_arm_controller:
   ros__parameters:
-    use_sim_time : True
-    joints:
-      - joint1
-      - joint2
-      - joint3
-      - joint4
-
-    write_op_modes:
-      - joint1
-      - joint2
-      - joint3
-      - joint4
-    
-    interface_name: position
-
     command_interfaces:
       - position
-    
     state_interfaces:
       - position
       - velocity
-
+    joints:
+      # - virtual_joint
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+    allow_nonzero_velocity_at_trajectory_end: true
     state_publish_rate: 50.0 # Defaults to 50
     action_monitor_rate: 20.0 # Defaults to 20
 

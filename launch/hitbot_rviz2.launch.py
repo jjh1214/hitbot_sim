@@ -1,9 +1,9 @@
-from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution
-from launch.conditions import IfCondition
 from launch_ros.actions import Node
+from launch import LaunchDescription
+from launch.conditions import IfCondition
+from launch.actions import DeclareLaunchArgument
 from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution
 
 
 def generate_launch_description():
@@ -48,7 +48,7 @@ def generate_launch_description():
             condition=IfCondition(LaunchConfiguration("publish_joints")),
             parameters=[
                 {'use_sim_time': LaunchConfiguration('use_sim_time')}
-            ]
+            ],
         ),
 
         Node(
@@ -61,7 +61,7 @@ def generate_launch_description():
                     'use_sim_time': LaunchConfiguration('use_sim_time'),
                     'robot_description': Command(['xacro ', LaunchConfiguration('urdf')])
                 }
-            ],
+            ],            
         ),
 
         # joint_state_publisher_gui
@@ -79,5 +79,5 @@ def generate_launch_description():
             arguments=['-d', rviz_config_path],
             condition=IfCondition(LaunchConfiguration("rviz")),
             parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}]
-        )
+        )  
     ])
