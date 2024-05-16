@@ -8,9 +8,8 @@
       <!-- Import Z-Arm_10042C0 urdf file -->
   <xacro:include filename="$(find hitbot_sim)/urdf/Z-Arm_10042C1.urdf" />
   
-
-		<xacro:hitbot_transmission />
 		<xacro:hitbot_gazebo />
+		<xacro:hitbot_transmission />    
     <xacro:hitbot_gazebo_control />
   </xacro:macro>
 </robot>

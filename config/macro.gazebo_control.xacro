@@ -2,9 +2,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 	<xacro:macro name="hitbot_gazebo_control">
 
-		<!-- I need this for ROS2 control -->
-		<!-- I create this file, it was NOT available in the original Doosan repo -->
-
 		<ros2_control name="GazeboSystem" type="system">
 			<hardware>
 				<plugin>gazebo_ros2_control/GazeboSystem</plugin>
@@ -32,8 +29,8 @@
 
 	    	<joint name="joint3">
 	    		<command_interface name="position">
-	    			<param name="min">-6.284</param>
-	    			<param name="max">6.284</param>
+	    			<param name="min">-2.967</param>
+	    			<param name="max">2.967</param>
 	    		</command_interface>
 	    		<state_interface name="position"/>
 	    		<state_interface name="velocity"/>
@@ -42,8 +39,8 @@
 
 	    	<joint name="joint4">
 	    		<command_interface name="position">
-	    			<param name="min">-6.284</param>
-	    			<param name="max">6.284</param>
+	    			<param name="min">-18.859</param>
+	    			<param name="max">18.859</param>
 	    		</command_interface>
 	    		<state_interface name="position"/>
 	    		<state_interface name="velocity"/>

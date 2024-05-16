@@ -1,7 +1,7 @@
 from launch_ros.actions import Node
 from launch import LaunchDescription
 from launch_ros.substitutions import FindPackageShare
-from launch.actions import ExecuteProcess, DeclareLaunchArgument
+from launch.actions import  ExecuteProcess, DeclareLaunchArgument, TimerAction
 from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution
 
 
@@ -57,14 +57,15 @@ def generate_launch_description():
             remappings=[('tf', 'gazebo_tf'), ('joint_states', 'gazebo_joint_states')]
         ),
 
-    # load_joint_state_broadcaster
-	    ExecuteProcess(
-            cmd=['ros2', 'control', 'load_controller','joint_state_broadcaster', '--set-state', 'active'],
-            output='screen'),
-
-	# load_joint_trajectory_controller
-	    ExecuteProcess( 
-            cmd=['ros2', 'control', 'load_controller', 'z_arm_controller', '--set-state', 'active'], 
-            output='screen'),            
+        # Launch moveit2 after 5 seconds
+        TimerAction(
+            period=5.0,  # Delay for 5 seconds
+            actions=[
+                ExecuteProcess(
+                    cmd=['ros2', 'launch', 'hitbot_moveit2_config', 'demo.launch.py'],
+                    output='screen'
+                )
+            ]
+        )
 
     ])
