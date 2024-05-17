@@ -27,7 +27,7 @@ setup(
     zip_safe=True,
     maintainer='dev_jung',
     maintainer_email='seedn7777@cwsfa.co.kr',
-    description='Hitbot Z-Arm robot simulation with ROS2 rviz2',
+    description='Hitbot Z-Arm robot simulation with ROS2 and Rviz2, Gazebo, Moveit2',
     license='MIT License',
     tests_require=['pytest'],
     entry_points={

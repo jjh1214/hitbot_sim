@@ -3,7 +3,7 @@
 <package format="3">
   <name>hitbot_sim</name>
   <version>0.0.0</version>
-  <description>Hitbot Z-Arm robot simulation with ROS2 and Rviz2</description>
+  <description>Hitbot Z-Arm robot simulation with ROS2 and Rviz2, Gazebo, Moveit2</description>
   <maintainer email="seedn7777@cwsfa.co.kr">dev_jung</maintainer>
   <license>MIT License</license>
 
