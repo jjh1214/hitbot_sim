@@ -40,7 +40,7 @@ $ source hitbot_ws/install/local_setup.bash
 ```
 $ ros2 launch hitbot_sim hitbot_rviz2.launch.py
 ```
-![alt text](<Screenshot from 2024-05-03 09-31-35.png>)
+![alt text](docs/Screenshot%20from%202024-05-03%2009-31-35.png)
 
 Click Randomize and check changes the links in Rviz2.
 
@@ -50,7 +50,7 @@ Click Center to return to the initial position.
 ```
 $ ros2 launch hitbot_moveit2_config demo.launch.py
 ```
-![alt text](<Screenshot from 2024-05-13 13-23-45.png>)
+![alt text](docs/Screenshot%20from%202024-05-13%2013-23-45.png)
 
 
 # Run - Rviz2 simulation and Real robot
@@ -83,13 +83,13 @@ Click Center to return to the initial position.
 ```
 $ ros2 launch hitbot_sim hitbot_gazebo.launch.py
 ```
-![alt text](<Screenshot from 2024-05-17 13-38-05.png>)
+![alt text](docs/Screenshot%20from%202024-05-17%2013-38-05.png)
 
 # Run - GAZEBO with rviz2
 ```
 $ ros2 launch hitbot_sim hitbot_gazebo_rviz2.launch.py
 ```
-![alt text](<Screenshot from 2024-05-17 13-40-08.png>)
+![alt text](docs/Screenshot%20from%202024-05-17%2013-40-08.png)
 
 ### If you want to move model
 ```
@@ -101,7 +101,7 @@ $ ros2 run hitbot_sim hitbot_controller_gazebo_pos
 ```
 $ ros2 launch hitbot_sim hitbot_gazebo_moveit2.launch.py
 ```
-![alt text](<Screenshot from 2024-05-17 14-57-13.png>)
+![alt text](docs/Screenshot%20from%202024-05-17%2014-57-13.png)
 
 ### Move example
 [Screencast from 05-17-2024 02:53:18 PM.webm](https://github.com/jjh1214/hitbot_sim/assets/103654989/f3b34ce3-fe83-435c-94b0-f2bf327c670a)
