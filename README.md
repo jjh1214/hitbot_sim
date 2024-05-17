@@ -79,8 +79,26 @@ Click Randomize and check changes the links in Real and Simulation.
 
 Click Center to return to the initial position.
 
-# TODO
+# Run - GAZEBO
 ```
 $ ros2 launch hitbot_sim hitbot_gazebo.launch.py
 ```
-Trying gazebo simulation....
+![alt text](<Screenshot from 2024-05-17 13-38-05.png>)
+
+# Run - GAZEBO with rviz2
+```
+$ ros2 launch hitbot_sim hitbot_gazebo_rviz2.launch.py
+```
+![alt text](<Screenshot from 2024-05-17 13-40-08.png>)
+
+### If you want to move model
+```
+$ ros2 run hitbot_sim hitbot_controller_gazebo_pos
+```
+
+
+# Run - GAZEBO with Moveit2
+```
+$ ros2 launch hitbot_sim hitbot_gazebo_moveit2.launch.py
+```
+![alt text](<Screenshot from 2024-05-17 14-57-13.png>)
