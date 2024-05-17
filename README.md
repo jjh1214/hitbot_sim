@@ -95,10 +95,11 @@ $ ros2 launch hitbot_sim hitbot_gazebo_rviz2.launch.py
 ```
 $ ros2 run hitbot_sim hitbot_controller_gazebo_pos
 ```
-
+[Screencast from 05-17-2024 01:40:48 PM.webm](https://github.com/jjh1214/hitbot_sim/assets/103654989/fa2aacff-fd0e-44e2-9335-54c111729f3f)
 
 # Run - GAZEBO with Moveit2
 ```
 $ ros2 launch hitbot_sim hitbot_gazebo_moveit2.launch.py
 ```
 ![alt text](<Screenshot from 2024-05-17 14-57-13.png>)
+[Screencast from 05-17-2024 02:53:18 PM.webm](https://github.com/jjh1214/hitbot_sim/assets/103654989/f3b34ce3-fe83-435c-94b0-f2bf327c670a)
