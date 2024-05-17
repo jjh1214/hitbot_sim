@@ -1,14 +1,28 @@
 import rclpy
+import random
 from rclpy.node import Node
-from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from builtin_interfaces.msg import Duration
+from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
-class JointTrajectoryPublisher(Node):
+
+class HitbotControllerGazeboPos(Node):
     def __init__(self):
-        super().__init__('joint_trajectory_publisher')
+        super().__init__('hitbot_controller_gazebo_pos')
         self.publisher_ = self.create_publisher(JointTrajectory, '/z_arm_controller/joint_trajectory', 10)
-        timer_period = 1  # seconds
+        self.manual_mode = self.get_input_mode()
+
+        timer_period = 2  # seconds
         self.timer = self.create_timer(timer_period, self.publish_trajectory)
+
+    def get_input_mode(self):
+        while True:
+            mode = input("Enter 'manual' to input positions manually or 'random' for random positions: ")
+            if mode.lower() == 'manual':
+                return 'manual'
+            elif mode.lower() == 'random':
+                return 'random'
+            else:
+                print("Invalid input. Please enter 'manual' or 'random'.")
 
     def publish_trajectory(self):
         msg = JointTrajectory()
@@ -17,7 +31,10 @@ class JointTrajectoryPublisher(Node):
         msg.header.frame_id = ''
         msg.joint_names = ['joint1', 'joint2', 'joint3', 'joint4']
 
-        positions = self.get_positions_from_user()
+        if self.manual_mode == 'manual':
+            positions = self.get_positions_from_user()
+        else:
+            positions = self.get_random_positions()
         
         point = JointTrajectoryPoint()
         point.positions = positions
@@ -46,9 +63,18 @@ class JointTrajectoryPublisher(Node):
             print("Invalid input. Please enter numerical values.")
             return self.get_positions_from_user()
 
+    def get_random_positions(self):
+        positions = []
+        joint_limits = [(-1.2, 0.0), (-1.571, 1.571), (-2.967, 2.967), (-18.850, 18.850)]
+        for limit in joint_limits:
+            min_limit, max_limit = limit
+            random_pos = random.uniform(min_limit, max_limit)
+            positions.append(random_pos)
+        return positions
+
 def main(args=None):
     rclpy.init(args=args)
-    joint_trajectory_publisher = JointTrajectoryPublisher()
+    joint_trajectory_publisher = HitbotControllerGazeboPos()
     rclpy.spin(joint_trajectory_publisher)
     joint_trajectory_publisher.destroy_node()
     rclpy.shutdown()

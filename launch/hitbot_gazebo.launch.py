@@ -35,15 +35,6 @@ def generate_launch_description():
         ),
 
         Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
-            name='urdf_spawner',
-            output='screen',
-            arguments=["-topic", "robot_description", "-entity", "Z-Arm_10042C0",
-                        "-x", "0.0", "-y", "0.0", "-z", "0.0"]
-        ),
-
-        Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
             name='robot_state_publisher',
@@ -54,7 +45,16 @@ def generate_launch_description():
                     'robot_description': Command(['xacro ', LaunchConfiguration('urdf')])
                 }
             ],
-            remappings=[('tf', 'gazebo_tf'), ('joint_states', 'gazebo_joint_states')]
+            remappings=[('tf', 'gazebo_tf'), ('joint_states', 'gazebo_joint_states'), ('robot_description', 'gazebo_robot_description')]
+        ),
+
+        Node(
+            package='gazebo_ros',
+            executable='spawn_entity.py',
+            name='urdf_spawner',
+            output='screen',
+            arguments=["-topic", "gazebo_robot_description", "-entity", "Z-Arm_10042C0",
+                        "-x", "0.0", "-y", "0.0", "-z", "0.0"]
         ),
 
     # load_joint_state_broadcaster
