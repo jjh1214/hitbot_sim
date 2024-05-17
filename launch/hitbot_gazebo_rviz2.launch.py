@@ -5,7 +5,6 @@ from launch_ros.substitutions import FindPackageShare
 from launch.actions import ExecuteProcess, DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution
 
-
 def generate_launch_description():
 
     urdf_path = PathJoinSubstitution(
@@ -40,28 +39,6 @@ def generate_launch_description():
             description='Run rviz'
         ),
 
-        DeclareLaunchArgument(
-            name='publish_joints',
-            default_value='true',
-            description='Launch joint_states_publisher'
-        ),
-
-        Node(
-            package='joint_state_publisher',
-            executable='joint_state_publisher',
-            name='joint_state_publisher',
-            condition=IfCondition(LaunchConfiguration("publish_joints")),
-            parameters=[
-                {'use_sim_time': LaunchConfiguration('use_sim_time')}
-            ],
-        ),
-
-        Node(
-            package="joint_state_publisher_gui",
-            executable="joint_state_publisher_gui",
-            output="screen"
-            ),
-
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
@@ -73,7 +50,6 @@ def generate_launch_description():
                     'robot_description': Command(['xacro ', LaunchConfiguration('urdf')])
                 }
             ],
-            remappings=[('tf', 'gazebo_tf'), ('joint_states', 'gazebo_joint_states')]
         ),
 
         Node(
@@ -100,14 +76,14 @@ def generate_launch_description():
             output='screen'
         ),
 
-    # load_joint_state_broadcaster
-	    ExecuteProcess(
+        ExecuteProcess(
             cmd=['ros2', 'control', 'load_controller','joint_state_broadcaster', '--set-state', 'active'],
-            output='screen'),
+            output='screen'
+        ),
 
-	# load_joint_trajectory_controller
-	    ExecuteProcess( 
+        ExecuteProcess( 
             cmd=['ros2', 'control', 'load_controller', 'z_arm_controller', '--set-state', 'active'], 
-            output='screen'),            
+            output='screen'
+        ),            
 
     ])

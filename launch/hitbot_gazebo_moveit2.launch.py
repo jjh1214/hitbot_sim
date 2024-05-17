@@ -39,7 +39,7 @@ def generate_launch_description():
             executable='spawn_entity.py',
             name='urdf_spawner',
             output='screen',
-            arguments=["-topic", "robot_description", "-entity", "Z-Arm_10042C0",
+            arguments=["-topic", "gazebo_robot_description", "-entity", "Z-Arm_10042C0",
                         "-x", "0.0", "-y", "0.0", "-z", "0.0"]
         ),
 
@@ -54,7 +54,7 @@ def generate_launch_description():
                     'robot_description': Command(['xacro ', LaunchConfiguration('urdf')])
                 }
             ],
-            remappings=[('tf', 'gazebo_tf'), ('joint_states', 'gazebo_joint_states')]
+            remappings=[('tf', 'gazebo_tf'), ('joint_states', 'gazebo_joint_states'), ('robot_description', 'gazebo_robot_description')]
         ),
 
         # Launch moveit2 after 5 seconds
