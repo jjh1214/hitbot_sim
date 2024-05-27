@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<robot name="Z-Arm_10042C0_gazebo" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- camera property -->
+  <xacro:arg name="use_nominal_extrinsics" default="true"/>
+  <xacro:property name="camera_1_pose">
+    <origin xyz="0.125 0.0 0.07" rpy="0 0 0" />
+  </xacro:property>
+
+</robot>

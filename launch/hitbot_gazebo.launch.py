@@ -8,7 +8,7 @@ from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitut
 def generate_launch_description():
 
     urdf_path = PathJoinSubstitution(
-        [FindPackageShare("hitbot_sim"), "urdf", "Z-Arm_10042C1.urdf.xacro"]
+        [FindPackageShare("hitbot_sim"), "urdf", "Z-Arm_10042C0_gazebo.urdf.xacro"]
     )    
 
     world_path = PathJoinSubstitution(

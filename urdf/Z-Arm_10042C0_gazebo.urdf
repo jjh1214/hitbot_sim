@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="Z-Arm_10042C0_gazebo">
+  <link name="world"/>
+  <joint name="base_joint" type="fixed">
+  	<origin xyz="0 0 0" rpy="-1.5708 0 0" />
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0152493195612961 -0.000340773146600589 0.627217436393109"
+        rpy="0 0 0" />
+      <mass
+        value="12.1147491899625" />
+      <inertia
+        ixx="1.57331650738548"
+        ixy="0.00013876928001303"
+        ixz="-0.00142621285833315"
+        iyy="1.56540260130721"
+        iyz="-0.00396786578401927"
+        izz="0.0545129495020593" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/base_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/base_link.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="0.0814844684502057 -0.000148613714255294 0.0317838791707967"
+        rpy="0 0 0" />
+      <mass
+        value="0.993699801386025" />
+      <inertia
+        ixx="0.000950142292489542"
+        ixy="-1.44578489991647E-05"
+        ixz="7.33036655063474E-05"
+        iyy="0.0034290254131011"
+        iyz="-2.09106228762866E-06"
+        izz="0.00392515031508005" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/link1.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/link1.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="joint1"
+    type="prismatic">
+    <!-- <origin
+      xyz="0 -0.78099 0"
+      rpy="1.5708 0 0" /> -->
+    <origin
+      xyz="0 -1.2 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.95"
+      upper="0"
+      effort="1"
+      velocity="1" />
+  </joint>
+  
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="0.111045959309931 2.43604684770394E-05 -0.0314379854113542"
+        rpy="0 0 0" />
+      <mass
+        value="0.085844227294122" />
+      <inertia
+        ixx="0.00708782289991147"
+        ixy="7.1034720884927E-06"
+        ixz="0.000255328408086295"
+        iyy="0.0470616581346809"
+        iyz="3.5236472788361E-07"
+        izz="0.0503399714879645" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/link2.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/link2.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="0.133 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="30" lower="-1.571" upper="1.571" velocity="1.571"/>
+  </joint>
+
+  <link
+    name="link3">
+    <inertial>
+      <origin
+        xyz="0.0953068068304957 1.45953948384313E-13 -0.0226655447402296"
+        rpy="0 0 0" />
+      <mass
+        value="0.0343252725336984" />
+      <inertia
+        ixx="0.00328366639192851"
+        ixy="-1.56304791044749E-14"
+        ixz="5.94905284720721E-05"
+        iyy="0.0233302625835159"
+        iyz="1.47845983740584E-16"
+        izz="0.0254348240065591" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/link3.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/link3.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="joint3"
+    type="revolute">
+    <origin
+      xyz="0.22 0 -0.06799"
+      rpy="0 0 0" />
+    <parent
+      link="link2" />
+    <child
+      link="link3" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="30" lower="-2.967" upper="2.967" velocity="1.571"/>
+  </joint>
+
+  <link
+    name="link4">
+    <inertial>
+      <origin
+        xyz="-0.000247759291386207 -7.08258575587396E-12 -0.0209527102025886"
+        rpy="0 0 0" />
+      <mass
+        value="0.0120587662892703" />
+      <inertia
+        ixx="5.0401439482025E-05"
+        ixy="1.41751614431463E-14"
+        ixz="-1.42422376690236E-07"
+        iyy="5.01231671450723E-05"
+        iyz="8.96921067460828E-15"
+        izz="8.90018861873181E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/link4.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find hitbot_sim)/meshes/Z-Arm_10042C0/link4.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="joint4"
+    type="revolute">
+    <origin
+      xyz="0.2 0 -0.0284"
+      rpy="0 0 3.1416" />
+    <parent
+      link="link3" />
+    <child
+      link="link4" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="30" lower="-18.850" upper="18.850" velocity="1.571"/>
+  </joint>
+
+</robot>

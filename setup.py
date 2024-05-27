@@ -15,6 +15,7 @@ setup(
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
         (os.path.join('share', package_name, 'urdf'), glob('urdf/*.xacro')),
         (os.path.join('share', package_name, 'urdf'), glob('urdf/*.urdf')),
+        (os.path.join('share', package_name, 'urdf', 'sensors'), glob('urdf/sensors/*.xacro')),
         (os.path.join('share', package_name, 'meshes', 'Z-Arm_10042C0'), glob('meshes/Z-Arm_10042C0/*.dae')),
         (os.path.join('share', package_name, 'models', 'Z-Arm_10042C0'), glob('models/Z-Arm_10042C0/*.dae')),
         (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),
