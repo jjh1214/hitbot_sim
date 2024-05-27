@@ -5,9 +5,9 @@
   <xacro:arg name="use_nominal_extrinsics" default="true"/>
 
   <!-- xacro include -->
-  <xacro:include filename="$(find hitbot_sim)/urdf/Z-Arm_10042C0.urdf.xacro" />
+  <xacro:include filename="$(find hitbot_sim)/urdf/Z-Arm_10042C0_gazebo_properties.urdf.xacro" />
 
   <!-- Mani Base -->
-  <xacro:Z-Arm_10042C0/>
+  <xacro:Z-Arm_10042C0_gazebo/>
 
 </robot>

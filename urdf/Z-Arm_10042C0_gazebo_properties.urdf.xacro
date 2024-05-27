@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<robot name="Z-Arm_10042C0_gazebo" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="Z-Arm_10042C0_gazebo">
+  <xacro:include filename="$(find hitbot_sim)/config/macro.gazebo.xacro" />
+	<xacro:include filename="$(find hitbot_sim)/config/macro.transmission.xacro" />
+  <xacro:include filename="$(find hitbot_sim)/config/macro.gazebo_control.xacro" />
+  <xacro:include filename="$(find hitbot_sim)/urdf/Z-Arm_10042C0_gazebo_sensor_properties.urdf.xacro" />
+  <xacro:include filename="$(find hitbot_sim)/urdf/sensors/d435.urdf.xacro" />
+  <!-- Import Z-Arm_10042C0 urdf file -->
+  <xacro:include filename="$(find hitbot_sim)/urdf/Z-Arm_10042C0_gazebo.urdf" />
+
+  <!-- IntelRealsense D435 (Plugin) -->
+  <xacro:sensor_d455 parent="link1" name="camera_1" use_nominal_extrinsics="$(arg use_nominal_extrinsics)">
+    <xacro:insert_block name="camera_1_pose" />
+  </xacro:sensor_d455>
+  
+		<xacro:hitbot_gazebo />
+		<xacro:hitbot_transmission />    
+    <xacro:hitbot_gazebo_control />
+  </xacro:macro>
+</robot>
