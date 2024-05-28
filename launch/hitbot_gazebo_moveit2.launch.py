@@ -8,7 +8,7 @@ from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitut
 def generate_launch_description():
 
     urdf_path = PathJoinSubstitution(
-        [FindPackageShare("hitbot_sim"), "urdf", "Z-Arm_10042C1.urdf.xacro"]
+        [FindPackageShare("hitbot_sim"), "urdf", "Z-Arm_10042C0_gazebo.urdf.xacro"]
     )    
 
     world_path = PathJoinSubstitution(
@@ -59,13 +59,25 @@ def generate_launch_description():
 
         # Launch moveit2 after 5 seconds
         TimerAction(
-            period=5.0,  # Delay for 5 seconds
+            period=7.0,  # Delay for 5 seconds
             actions=[
                 ExecuteProcess(
                     cmd=['ros2', 'launch', 'hitbot_moveit2_config', 'demo.launch.py'],
                     output='screen'
-                )
+                ),
+
             ]
-        )
+        ),
+
+        TimerAction(
+            period=10.0,
+            actions=[
+                ExecuteProcess(
+                    cmd=['ros2', 'param', 'set', '/move_group', 'use_sim_time', 'true'],
+                    output='screen'
+                ),
+
+            ]
+        ),
 
     ])

@@ -37,7 +37,6 @@ setup(
             'hitbot_controller_joint_state       = hitbot_sim.hitbot_controller_joint_state:main',
             'hitbot_controller_gazebo_pos        = hitbot_sim.hitbot_controller_gazebo_pos:main',
             
-
         ],
     },
 )
