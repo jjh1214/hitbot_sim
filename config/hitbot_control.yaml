@@ -11,6 +11,7 @@ controller_manager:
 
 z_arm_controller:
   ros__parameters:
+    use_sim_time : True
     command_interfaces:
       - position
     state_interfaces:
