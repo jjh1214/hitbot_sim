@@ -1,0 +1,39 @@
+/**:
+  controller_manager:
+    ros__parameters:
+      update_rate: 10  # Hz
+
+      joint_state_broadcaster:
+        type: joint_state_broadcaster/JointStateBroadcaster
+      
+      z_arm_moveit_controller:
+        type: joint_trajectory_controller/JointTrajectoryController
+
+      z_arm_joint_publisher:
+        type: joint_state_controller/JointStateController
+
+      z_arm_position_controller:
+        type: forward_command_controller/ForwardCommandController
+      
+z_arm_position_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+    interface_name: position
+
+z_arm_moveit_controller:
+  ros__parameters:
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+

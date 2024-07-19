@@ -25,7 +25,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/base_link.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/base_link.dae"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -34,7 +34,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/base_link.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/base_link.dae"/>
       </geometry>
     </collision>
   </link>
@@ -47,7 +47,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link1.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link1.dae"/>
       </geometry>
       <material name="">
         <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -56,7 +56,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link1.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link1.dae"/>
       </geometry>
     </collision>
   </link>
@@ -79,7 +79,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link2.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link2.dae"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -88,7 +88,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link2.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link2.dae"/>
       </geometry>
     </collision>
   </link>
@@ -108,7 +108,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link3.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link3.dae"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -117,7 +117,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link3.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link3.dae"/>
       </geometry>
     </collision>
   </link>
@@ -137,7 +137,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link4.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link4.dae"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -146,7 +146,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/public/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link4.dae"/>
+        <mesh filename="file:///home/roboarm/hitbot_ws/install/hitbot_sim/share/hitbot_sim/meshes/Z-Arm_10042C0/link4.dae"/>
       </geometry>
     </collision>
   </link>
