@@ -9,11 +9,11 @@
       z_arm_position_controller:
         type: forward_command_controller/ForwardCommandController
 
-  z_arm_position_controller:
-    ros__parameters:
-      joints:
-        - joint_1
-        - joint_2
-        - joint_3
-        - joint_4
-      interface_name: position
+z_arm_position_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+    interface_name: position

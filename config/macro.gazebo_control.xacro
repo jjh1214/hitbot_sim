@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 	<xacro:macro name="hitbot_gz_ros2_control">
 
-		<ros2_control name="GazeboSimSystem" type="system">
+		<ros2_control name="IgnitionSystem" type="system">
 			<hardware>
 				<plugin>ign_ros2_control/IgnitionSystem</plugin>
 	    	</hardware>

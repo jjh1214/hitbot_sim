@@ -16,14 +16,6 @@ def generate_launch_description():
         [FindPackageShare('hitbot_sim'), 'rviz', 'default.rviz']
     )
 
-    robot_controllers = PathJoinSubstitution(
-        [
-            FindPackageShare("hitbot_sim"),
-            "config",
-            "hitbot_controller2.yaml",
-        ]
-    )    
-
     return LaunchDescription([
         DeclareLaunchArgument(
             name='urdf',
@@ -86,33 +78,5 @@ def generate_launch_description():
             arguments=['-d', rviz_config_path],
             condition=IfCondition(LaunchConfiguration("rviz")),
             parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}]
-        ),
-
-        Node(
-            package="controller_manager",
-            executable="ros2_control_node",
-            # namespace=LaunchConfiguration('name'),
-            parameters=[                
-                {
-                    'use_sim_time': LaunchConfiguration('use_sim_time'),
-                    'robot_description': Command(['xacro ', LaunchConfiguration('urdf')])
-                }, robot_controllers],
-            output="both",
-        ),
-
-        Node(
-        package="controller_manager",
-        # namespace=LaunchConfiguration('name'),
-        executable="spawner",
-        arguments=["joint_state_broadcaster", "-c", "controller_manager"],
-        ),
-
-        # Node(
-        # package="controller_manager",
-        # namespace=LaunchConfiguration('name'),
-        # executable="spawner",
-        # arguments=["dsr_controller2", "-c", "controller_manager"],
-        # ),
-
-
+        )  
     ])
