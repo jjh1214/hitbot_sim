@@ -8,9 +8,6 @@ controller_manager:
     z_arm_moveit_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
-    z_arm_joint_publisher:
-      type: joint_state_controller/JointStateController
-
     z_arm_position_controller:
       type: forward_command_controller/ForwardCommandController
       
