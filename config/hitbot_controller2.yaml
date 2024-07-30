@@ -17,35 +17,21 @@ controller_manager:
 z_arm_position_controller:
   ros__parameters:
     joints:
-      - joint_1
-      - joint_2
-      - joint_3
-      - joint_4
+      - joint1
+      - joint2
+      - joint3
+      - joint4
     interface_name: position
 
 z_arm_moveit_controller:
   ros__parameters:
     joints:
-      - joint_1
-      - joint_2
-      - joint_3
-      - joint_4
+      - joint1
+      - joint2
+      - joint3
+      - joint4
     command_interfaces:
       - position
     state_interfaces:
       - position
       - velocity
-
-
-
-  # ros__parameters:
-  #   command_interfaces:
-  #     - position
-  #   state_interfaces:
-  #     - position
-  #     - velocity
-  #   joints:
-  #     - joint_1
-  #     - joint_2
-  #     - joint_3
-  #     - joint_4      
