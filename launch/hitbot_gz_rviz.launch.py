@@ -5,6 +5,7 @@ from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution
 from launch.event_handlers import OnProcessStart
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.conditions import IfCondition
 
 def generate_launch_description():
 
@@ -19,6 +20,10 @@ def generate_launch_description():
             "hitbot_controller2.yaml",
         ]
     )    
+
+    rviz_config_path = PathJoinSubstitution(
+        [FindPackageShare('hitbot_sim'), 'rviz', 'default.rviz']
+    )
 
     controller_manager_node = Node(
         package="controller_manager",
@@ -41,6 +46,12 @@ def generate_launch_description():
             description='Use simulation time'
         ),
 
+        DeclareLaunchArgument(
+            name='rviz',
+            default_value='true',
+            description='Run rviz'
+        ),
+
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
@@ -48,10 +59,19 @@ def generate_launch_description():
             output='screen',
             parameters=[
                 {
-                    # 'use_sim_time': LaunchConfiguration('use_sim_time'),
+                    'use_sim_time': LaunchConfiguration('use_sim_time'),
                     'robot_description': Command(['xacro ', LaunchConfiguration('urdf')])
                 }
             ],
+        ),
+
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            output='screen',
+            arguments=['-d', rviz_config_path],
+            condition=IfCondition(LaunchConfiguration("rviz")),
         ),
 
         controller_manager_node,

@@ -4,7 +4,7 @@
   
     <gazebo>
       <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
-          <parameters>$(find hitbot_sim)/config/hitbot_control_gz.yaml</parameters>
+          <parameters>$(find hitbot_sim)/config/hitbot_controller2.yaml</parameters>
         </plugin>
     </gazebo>
 
