@@ -121,10 +121,6 @@ def generate_launch_description():
                     cmd=['ros2', 'control', 'load_controller', 'z_arm_moveit_controller', '--set-state', 'active'],
                     output='screen'
                 ),
-                # ExecuteProcess(
-                #     cmd=['ros2', 'control', 'load_controller', 'z_arm_position_controller', '--set-state', 'active'],
-                #     output='screen'
-                # ),
             ]
         )
     ])
