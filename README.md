@@ -5,12 +5,16 @@
 # Note
 This repository is ROS2-Humble Package for the [Z-Arm of Hitbot.](https://www.hitbotrobot.com/category/product-center/4-axis-robot-arm/)
 
-This repository is able Rviz2 and real robot is connected and used.
+This repository is made with an upgrade from gazebo classic to [gazebo harmonic.](https://gazebosim.org/docs/harmonic/getstarted/)
+
+
 
 # Build
 ### *This Package is implemented at ROS2-Humble.*
+### *Please install Gazebo Harmonic before Build.*
 ```
 ### I assume that you have installed the ros-humble-desktop package using the apt-get command.
+### I assume that you have installed Gazebo Harmonic
 ### I recommand the /home/<user_home>/hitbot_ws/src
 ### Before activate simulation, please install moveit2 and gazebo
 
@@ -36,79 +40,35 @@ $ source hitbot_ws/install/local_setup.bash
 # $ echo 'source ~/hitbot_ws/install/local_setup.bash' >> ~/.bashrc 
 ```
 
-# Run - Rviz2 simulation
+# Run - GAZEBO harmonic
 ```
-$ ros2 launch hitbot_sim hitbot_rviz2.launch.py
+$ ros2 launch hitbot_sim hitbot_gz.launch.py
 ```
-![alt text](docs/Screenshot%20from%202024-05-03%2009-31-35.png)
-
-Click Randomize and check changes the links in Rviz2.
-
-Click Center to return to the initial position.
-
-# Run - Moveit2 simulation
-```
-$ ros2 launch hitbot_moveit2_config demo.launch.py
-```
-![alt text](docs/Screenshot%20from%202024-05-13%2013-23-45.png)
-
-
-# Run - Rviz2 simulation and Real robot
-Connect the hitbot to the PC with a TCP/IP cable.
-
-Set the IP address of the PC as follows
-
-- IP adress : 192.168.0.100
-
-- Subnet mask : 255.255.255.0
-
-- Default gateway : 192.168.0.1
-
-### Run the following code to verify the connection
-
-```
-$ ros2 run hitbot_sim hitbot_controller_joint_state
-```
-
-### Robot connetion is sucess and if you want move robot following code other terminal
-```
-$ ros2 launch hitbot_sim hitbot_rviz2.launch.py
-```
-
-Click Randomize and check changes the links in Real and Simulation.
-
-Click Center to return to the initial position.
-
-# Run - GAZEBO
-```
-$ ros2 launch hitbot_sim hitbot_gazebo.launch.py
-```
-![alt text](docs/Screenshot%20from%202024-05-17%2013-38-05.png)
-
-# Run - GAZEBO with rviz2
-```
-$ ros2 launch hitbot_sim hitbot_gazebo_rviz2.launch.py
-```
-![alt text](docs/Screenshot%20from%202024-05-17%2013-40-08.png)
+[Screencast from 08-12-2024 10:21:46 AM.webm](https://github.com/user-attachments/assets/d85c97d9-7229-4986-853c-3fa68db5e035)
 
 ### If you want to move model
 ```
-$ ros2 run hitbot_sim hitbot_controller_gazebo_pos
+   ros2 topic pub -1 /z_arm_moveit_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory "header:
+     stamp:
+       sec: 0
+       nanosec: 0
+     frame_id: ''
+   joint_names: ['joint1', 'joint2', 'joint3', 'joint4']
+   points: [{positions: [-0.1, 0.0, 0.0, 0.0], velocities: [0.0, 0.0, 0.0, 0.0], accelerations: [0.0, 0.0, 0.0, 0.0], time_from_start: {sec: 1, nanosec: 0}}]"
 ```
-[Screencast from 05-17-2024 01:40:48 PM.webm](https://github.com/jjh1214/hitbot_sim/assets/103654989/fa2aacff-fd0e-44e2-9335-54c111729f3f)
-
-# Run - GAZEBO with Moveit2
-```
-$ ros2 launch hitbot_sim hitbot_gazebo_moveit2.launch.py
-```
-![alt text](docs/Screenshot%20from%202024-05-17%2014-57-13.png)
-
-### Move example
-[Screencast from 05-17-2024 02:53:18 PM.webm](https://github.com/jjh1214/hitbot_sim/assets/103654989/f3b34ce3-fe83-435c-94b0-f2bf327c670a)
-
-
-# Run - GAZEBO harmonic
-[Screencast from 08-12-2024 10:21:46 AM.webm](https://github.com/user-attachments/assets/d85c97d9-7229-4986-853c-3fa68db5e035)
 
 # Run - GAZEBO harmonic with rviz2
+```
+$ ros2 launch hitbot_sim hitbot_gz_rviz.launch.py
+```
 [Screencast from 08-12-2024 10:07:55 AM.webm](https://github.com/user-attachments/assets/913d8ef8-bfe4-4cb6-ba99-fd849091b036)
+### If you want to move model
+```
+   ros2 topic pub -1 /z_arm_moveit_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory "header:
+     stamp:
+       sec: 0
+       nanosec: 0
+     frame_id: ''
+   joint_names: ['joint1', 'joint2', 'joint3', 'joint4']
+   points: [{positions: [-0.1, 0.0, 0.0, 0.0], velocities: [0.0, 0.0, 0.0, 0.0], accelerations: [0.0, 0.0, 0.0, 0.0], time_from_start: {sec: 1, nanosec: 0}}]"
+```
