@@ -105,3 +105,10 @@ $ ros2 launch hitbot_sim hitbot_gazebo_moveit2.launch.py
 
 ### Move example
 [Screencast from 05-17-2024 02:53:18 PM.webm](https://github.com/jjh1214/hitbot_sim/assets/103654989/f3b34ce3-fe83-435c-94b0-f2bf327c670a)
+
+
+# Run - GAZEBO harmonic
+[Screencast from 08-12-2024 10:21:46 AM.webm](https://github.com/user-attachments/assets/d85c97d9-7229-4986-853c-3fa68db5e035)
+
+# Run - GAZEBO harmonic with rviz2
+[Screencast from 08-12-2024 10:07:55 AM.webm](https://github.com/user-attachments/assets/913d8ef8-bfe4-4cb6-ba99-fd849091b036)
