@@ -23,7 +23,7 @@ This repository is made with an upgrade from gazebo classic to [gazebo harmonic.
 $ mkdir -p ~/hitbot_ws/src
 $ cd ~/hitbot_ws/src
 $ git clone -b humble https://github.com/jjh1214/hitbot.git
-$ git clone -b humble https://github.com/jjh1214/hitbot_sim.git
+$ git clone -b humble-devel https://github.com/jjh1214/hitbot_sim.git
 $ git clone -b humble https://github.com/jjh1214/hitbot_msgs.git
 $ git clone -b humble https://github.com/jjh1214/hitbot_moveit2_config.git
 
