@@ -72,3 +72,9 @@ $ ros2 launch hitbot_sim hitbot_gz_rviz.launch.py
    joint_names: ['joint1', 'joint2', 'joint3', 'joint4']
    points: [{positions: [-0.1, 0.0, 0.0, 0.0], velocities: [0.0, 0.0, 0.0, 0.0], accelerations: [0.0, 0.0, 0.0, 0.0], time_from_start: {sec: 1, nanosec: 0}}]"
 ```
+
+# TODO
+### Fix hitbot_moveit_config pkg. (Humble -> Jazzy)
+### Chage move commands. (joint_trajectory -> position_controller)
+### Clear Code. (Delete humble code)
+### Update ReadME.
