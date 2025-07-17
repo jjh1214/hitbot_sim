@@ -3,7 +3,7 @@
 	<xacro:macro name="hitbot_gazebo" params="namespace:=/">
   
     <gazebo>
-      <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
           <parameters>$(find hitbot_sim)/config/hitbot_controller2.yaml</parameters>
         </plugin>
     </gazebo>
