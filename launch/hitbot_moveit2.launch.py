@@ -1,21 +1,21 @@
 import os
 
-from launch_ros.actions import Node
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument, RegisterEventHandler
+from launch.event_handlers import OnProcessStart
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.conditions import IfCondition
+from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from launch.actions import  ExecuteProcess, DeclareLaunchArgument, TimerAction
-from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution
+
 from moveit_configs_utils import MoveItConfigsBuilder
-from ament_index_python.packages import get_package_share_directory
+
 
 def generate_launch_description():
+    ld = LaunchDescription()
 
     urdf_path = PathJoinSubstitution(
         [FindPackageShare("hitbot_moveit2_config"), "config", "Z-Arm_10042C0.urdf.xacro"]
-    )    
-
-    world_path = PathJoinSubstitution(
-        [FindPackageShare("hitbot_sim"), "worlds", "empty_world.world"]
     )
 
     moveit_config = (
@@ -23,6 +23,9 @@ def generate_launch_description():
         .robot_description(file_path="config/Z-Arm_10042C0.urdf.xacro")
         .robot_description_semantic(file_path="config/Z-Arm_10042C0.srdf")
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
+        .planning_pipelines(
+            pipelines=["ompl", "chomp", "pilz_industrial_motion_planner", "stomp"]
+        )
         .to_moveit_configs()
     )
 
@@ -31,103 +34,109 @@ def generate_launch_description():
     )
 
     robot_controllers = PathJoinSubstitution(
-        [
-            FindPackageShare("hitbot_sim"),
-            "config",
-            "hitbot_controller2.yaml",
-        ]
+        [FindPackageShare("hitbot_moveit2_config"), "config", "hitbot_moveit_controllers.yaml"]
     )
 
-    return LaunchDescription([
-        
-        DeclareLaunchArgument(
-            name='urdf',
-            default_value=urdf_path,
-            description='URDF path'
-        ),        
+    ld.add_action(DeclareLaunchArgument(
+        name='urdf',
+        default_value=urdf_path,
+        description='URDF path'
+    ))
 
-        DeclareLaunchArgument(
-            name='use_sim_time',
-            default_value='false',
-            description='Use simulation time'
-        ),
+    ld.add_action(DeclareLaunchArgument(
+        name='db',
+        default_value='False',
+        description='If true, run warehouse MongoDB server'
+    ))
 
-        Node(
-            package='robot_state_publisher',
-            executable='robot_state_publisher',
-            name='robot_state_publisher',
-            output='screen',
-            parameters=[
-                moveit_config.robot_description,
-                {
-                    'use_sim_time': LaunchConfiguration('use_sim_time'),
-                    # 'robot_description': Command(['xacro ', LaunchConfiguration('urdf')])
-                    
-                }
-            ],
-            remappings=[('tf', 'gazebo_tf'), ('joint_states', 'gazebo_joint_states'), ('robot_description', 'gazebo_robot_description')]
-        ),
+    ld.add_action(Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher',
+        output='screen',
+        parameters=[
+            moveit_config.robot_description,
+        ],
+    ))
 
-        Node(
-            package='joint_state_publisher',
-            executable='joint_state_publisher',
-            name='joint_state_publisher',
-            parameters=[
-                moveit_config.robot_description,
-                {'use_sim_time': LaunchConfiguration('use_sim_time')}
-            ],
-        ),
+    ld.add_action(Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher',
+        parameters=[
+            moveit_config.robot_description,
+        ],
+    ))
 
-        Node(
-                package="moveit_ros_move_group",
-                executable="move_group",
-                output="screen",
-                parameters=[moveit_config.to_dict(), {"use_sim_time": True}],
-            ),
+    ld.add_action(Node(
+        package="moveit_ros_move_group",
+        executable="move_group",
+        output="screen",
+        parameters=[moveit_config.to_dict()],
+    ))
 
-        Node(
-                package="rviz2",
-                executable="rviz2",
-                name="rviz2",
-                output="log",
-                arguments=["-d", rviz_config_path],
-                parameters=[
-                    moveit_config.robot_description,
-                    moveit_config.robot_description_semantic,
-                    moveit_config.planning_pipelines,
-                    moveit_config.robot_description_kinematics,],
-            ),
+    ld.add_action(Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        output="log",
+        arguments=["-d", rviz_config_path],
+        parameters=[
+            moveit_config.robot_description,
+            moveit_config.robot_description_semantic,
+            moveit_config.planning_pipelines,
+            moveit_config.robot_description_kinematics,
+            moveit_config.joint_limits,
+        ],
+    ))
 
-        Node(
-                package="controller_manager",
-                executable="ros2_control_node",
-                name="controller_manager",
-                parameters=[
-                    moveit_config.robot_description,  
-                    moveit_config.trajectory_execution,
-                ],
-                output="both",
-            ),
+    controller_manager_node = Node(
+        package="controller_manager",
+        executable="ros2_control_node",
+        parameters=[robot_controllers],
+        # remappings=[
+        #     ("/controller_manager/robot_description", "/robot_description"),
+        # ],
+        output="screen",
+    )
+    ld.add_action(controller_manager_node)
 
-        # TimerAction(
-        #     period=5.0,
-        #     actions=[
-        #         ExecuteProcess(
-        #             cmd=['ros2', 'control', 'load_controller', 'joint_state_broadcaster', '--set-state', 'active'],
-        #             output='screen'
-        #         ),
-        #         ExecuteProcess(
-        #             cmd=['ros2', 'control', 'load_controller', 'z_arm_moveit_controller', '--set-state', 'active'],
-        #             output='screen'
-        #         ),
-        #     ]
-        # )
+    joint_state_broadcaster_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_state_broadcaster",
+                   "--controller-manager",
+                   "/controller_manager"],
+        output="screen"
+    )
 
-        # Node(
-        #         package="controller_manager",
-        #         # namespace=LaunchConfiguration('name'),
-        #         executable="spawner",
-        #         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
-        #     ),
+    z_arm_moveit_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["z_arm_moveit_controller",
+                   "-c",
+                   "/controller_manager"],
+        output="screen"
+    )
 
-    ])
+    ld.add_action(RegisterEventHandler(
+        OnProcessStart(
+            target_action=controller_manager_node,
+            on_start=[joint_state_broadcaster_spawner, z_arm_moveit_controller_spawner],
+        )
+    ))
+
+    db_config = LaunchConfiguration("db")
+    ld.add_action(Node(
+        package="warehouse_ros_mongo",
+        executable="mongo_wrapper_ros.py",
+        parameters=[
+            {"warehouse_port": 33829},
+            {"warehouse_host": "localhost"},
+            {"warehouse_plugin": "warehouse_ros_mongo::MongoDatabaseConnection"},
+        ],
+        output="screen",
+        condition=IfCondition(db_config),
+    ))
+
+    return ld
