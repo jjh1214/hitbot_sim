@@ -44,7 +44,8 @@ $ source hitbot_ws/install/local_setup.bash
 ```
 $ ros2 launch hitbot_sim hitbot_gz.launch.py
 ```
-[Screencast from 08-12-2024 10:21:46 AM.webm](https://github.com/user-attachments/assets/d85c97d9-7229-4986-853c-3fa68db5e035)
+[Screencast from 2025-07-25 11-00-50.webm](https://github.com/user-attachments/assets/1c028cb6-4dc7-4bd2-8166-9d44fac37a5d)
+
 
 ### If you want to move model
 ```
@@ -62,7 +63,8 @@ data:
 ```
 $ ros2 launch hitbot_sim hitbot_gz_rviz.launch.py
 ```
-[Screencast from 08-12-2024 10:07:55 AM.webm](https://github.com/user-attachments/assets/913d8ef8-bfe4-4cb6-ba99-fd849091b036)
+[Screencast from 2025-07-25 11-02-34.webm](https://github.com/user-attachments/assets/ee88d6df-d7d3-478f-a8d5-0872eeb6c543)
+
 ### If you want to move model
 ```
 ros2 topic pub -1 /z_arm_position_controller/commands std_msgs/msg/Float64MultiArray "layout:
@@ -79,3 +81,5 @@ data:
 ```
 $ ros2 launch hitbot_sim hitbot_gz_moveit2.launch.py
 ```
+[Screencast from 2025-07-25 11-04-11.webm](https://github.com/user-attachments/assets/a12a132a-d438-4c7e-9197-db726434b89c)
+
