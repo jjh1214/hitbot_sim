@@ -1,11 +1,17 @@
 # Hitbot_sim
 [![license - MIT](https://img.shields.io/:license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![ROS2 Humble](https://img.shields.io/badge/ROS2-Humble-red.svg)](https://index.ros.org/doc/ros2/Releases/)
+[![ROS2 Jazzy](https://img.shields.io/badge/ROS2-Jazzy-purple.svg)](https://index.ros.org/doc/ros2/Releases/)
 
 # Note
 This repository is ROS2-Humble Package for the [Z-Arm of Hitbot.](https://www.hitbotrobot.com/category/product-center/4-axis-robot-arm/)
 
-This repository is able Rviz2 and real robot is connected and used.
+In Humble repositories is able simulation(rviz2, gazebo-classic or harmonic, moveit2) and real robot is connected and used.
+
+For the Jazzy version, see the jazzy-devel branch.
+
+Jazzy supports only simulations (RViz2, "Gazebo-Harmonic", MoveIt2).
+Sim2Real has not been tested on Jazzy.
 
 # Build
 ### *This Package is implemented at ROS2-Humble.*
