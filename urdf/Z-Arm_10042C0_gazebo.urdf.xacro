@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="hitbot" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="Z-Arm_10042C0" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- xacro argument -->
   <xacro:arg name="use_nominal_extrinsics" default="true"/>
