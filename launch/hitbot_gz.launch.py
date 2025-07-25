@@ -1,19 +1,16 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 
-from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction
-from launch.actions import RegisterEventHandler
-from launch.event_handlers import OnProcessExit
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
-
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription, OpaqueFunction, RegisterEventHandler
+from launch.event_handlers import OnProcessExit
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 
 def generate_launch_description():
-    use_sim_time = LaunchConfiguration('use_sim_time', default=True)
 
     def robot_state_publisher(context):
         robot_description_content = Command(
@@ -28,13 +25,13 @@ def generate_launch_description():
             ]
         )
         robot_description = {'robot_description': robot_description_content}
-        node_robot_state_publisher = Node(
+        robot_state_publisher_node = Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
             output='screen',
             parameters=[robot_description]
         )
-        return [node_robot_state_publisher]
+        return [robot_state_publisher_node]
 
     robot_controllers = PathJoinSubstitution(
         [
@@ -49,7 +46,7 @@ def generate_launch_description():
         executable='create',
         output='screen',
         arguments=['-topic', 'robot_description', '-name',
-                   'hitbot', '-allow_renaming', 'true'],
+                   'Z-Arm_10042C0', '-allow_renaming', 'true'],
     )
 
     joint_state_broadcaster_spawner = Node(
@@ -106,14 +103,7 @@ def generate_launch_description():
         ros_gz_bridge,
         gz_spawn_entity,
 
-        DeclareLaunchArgument(
-            'use_sim_time',
-            default_value=use_sim_time,
-            description='If true, use simulated clock'),
-        DeclareLaunchArgument(
-            'description_format',
-            default_value='urdf',
-            description='Robot description format to use, urdf or sdf'),
     ])
+
     ld.add_action(OpaqueFunction(function=robot_state_publisher))
     return ld
